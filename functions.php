@@ -13,9 +13,11 @@ function my_enqueue_styles() {
 
     /* If using a child theme, auto-load the parent theme style. */
     if ( is_child_theme() ) {
-        wp_enqueue_style( 'parent-style', trailingslashit( get_template_directory_uri() ) . 'style.css' );
+        wp_enqueue_style( 'parent-style', trailingslashit( get_template_directory_uri() ) . 'style.css');
     }
 
+    // Allow child style can overide parent style
+    wp_enqueue_style( 'child-style', get_stylesheet_uri(), array( 'parent-style' ) );
 }
 
 // * Do NOT include the opening php tag
@@ -24,7 +26,7 @@ add_filter('excerpt_more', 'new_excerpt_more');
 
 function new_excerpt_more($more) {
 
-	return '... <a class="more-link" href="' . get_permalink() . '">Read More</a>';
+	return '... <a class="more-link" href="' . get_permalink() . '" >keep reading →</a>';
 
 }
 
@@ -134,12 +136,15 @@ function sk_template_redirect( $template ) {
 	return $template;
 
 }
-add_action( 'genesis_setup', 'sk_primary_sidebar' );
-function sk_primary_sidebar() {
-	//* [Single Book pages] Custom Primary Sidebar for single Book entries
-	genesis_register_sidebar( array(
-		'id'			=> 'primary-sidebar-book',
-		'name'			=> 'Primary Sidebar - Book',
-		'description'	=> 'This is the primary sidebar for Book CPT entry'
-	) );
+
+/**
+ * Only querry books on homepage
+ */
+add_action( 'pre_get_posts', 'include_books_in_home' );
+
+function include_books_in_home( $query ) {
+
+  if ( ! is_admin() && $query->is_main_query() && $query->is_home() ) {
+    $query->set( 'post_type', array( 'books' ) ); // Can add more to books array like page, post
+  }
 }
