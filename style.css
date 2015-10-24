@@ -35,6 +35,15 @@ a {
 	font-size: 20px;
 	font-size: 2rem;
 }
+
+/*Stick post - Newest Books*/
+#sticky-posts-2 article {
+	padding: 0;
+}
+
+#sticky-posts-2 article h4 {
+	font-size: 1.5rem
+}
 /* Single and Archive templates for Books CPT
 ----------------------------------------------- */
 
