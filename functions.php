@@ -1,6 +1,7 @@
 <?php
 // Start the engine
 require_once( get_template_directory() . '/lib/init.php' );
+require_once( get_stylesheet_directory() . '/php/add_download_link_to_quick_edit.php' );
 
 add_theme_support( 'html5' );
 add_theme_support( 'genesis-responsive-viewport' );
