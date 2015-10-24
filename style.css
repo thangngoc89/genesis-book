@@ -13,6 +13,9 @@
 */
 
 /* Custom styles */
+body {
+	font-family: Helvetica, sans-serif;
+}
 a {
 	text-decoration: none;
 }
