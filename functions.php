@@ -5,6 +5,7 @@ require_once( get_template_directory() . '/lib/init.php' );
 add_theme_support( 'html5' );
 add_theme_support( 'genesis-responsive-viewport' );
 add_theme_support( 'genesis-footer-widgets', 3 );
+add_theme_support( 'custom-background' );
 
 add_action( 'wp_enqueue_scripts', 'my_enqueue_styles' );
 
