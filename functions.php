@@ -90,12 +90,15 @@ function sk_display_custom_fields() {
       }
 
 			if ( $book_purchase_link ) {
-				echo '<p><a href="' . $book_purchase_link . '">Buy this book</a></p>';
+				echo '<p><a href="' . $book_purchase_link . '" target="_blank" rel="nofollow">Buy this book</a></p>';
 			}
 
       if ( $book_download_link ) {
-				echo '<a href="' . $book_download_link . '" class="button">Download this book</a>';
+				echo '<a href="' . $book_download_link . '" class="button" target="_blank" rel="nofollow">Download this book</a>';
 			}
+
+      //TODO: Add admin options for this
+      echo '<p><a href="/huong-dan-tai-sach">(how to download this book)</a></p>';
 
 		echo '</div>';
 
