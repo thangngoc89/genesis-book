@@ -1,0 +1,88 @@
+/*
+	Theme Name: Books CPT
+	Theme URI: http://wpcanada.ca/our-themes/benson/
+	Description: Benson is a mobile responsive and HTML5 child theme created for the Genesis Framework
+	Author: WPCanada
+	Author URI: http://wpcanada.ca/
+	Version: 1.5.0
+	Tags: blue, white, grey, one-column, two-columns, three-columns, fixed-width, custom-menu, full-width-template, sticky-post, theme-options, threaded-comments, translation-ready
+	Template: genesis
+	Template Version: 2.2.0
+	License: GPL-2.0+
+	License URI: http://www.opensource.org/licenses/gpl-license.php
+*/
+
+/* Single and Archive templates for Books CPT
+----------------------------------------------- */
+
+.button:hover {
+	color: #fff;
+}
+
+.type-books .entry-meta {
+	border-top: none;
+	margin: 0;
+	padding: 0;
+	text-align: right;
+}
+
+/* books CPT archive page */
+
+.post-type-archive-books .book-meta p {
+	margin-bottom: 5px;
+}
+
+.post-type-archive-books .book-meta .button {
+	padding: 8px 15px;
+	font-size: 13px;
+	letter-spacing: 1px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.post-type-archive-books .cpt-archive-description {
+	background: #fff url(images/book-shelf.png) no-repeat right bottom;
+}
+
+/* books CPT single pages */
+
+.single-books .book-meta {
+	background: #a1d1db;
+	color: #111;
+	padding: 40px;
+	margin-bottom: 40px;
+	border-radius: 3px;
+}
+
+.single-books .entry-title, .post-type-archive-books .entry-title {
+	margin-bottom: 30px;
+}
+
+.prev-next-post-links {
+	overflow: hidden;
+	margin-bottom: 40px;
+	clear: both;
+}
+
+.previous-post-link {
+	float: left;
+}
+
+.next-post-link {
+	float: right;
+}
+
+@media only screen and (max-width: 568px) {
+
+	.type-books .entry-content {
+		margin-top: 20px;
+	}
+}
+
+@media only screen and (max-width: 320px) {
+
+	.type-books .entry-content img.alignleft {
+		float: none;
+	}
+
+}
