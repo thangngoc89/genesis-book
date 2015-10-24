@@ -35,15 +35,15 @@ add_action( 'genesis_before_sidebar_widget_area', 'sk_display_custom_fields' );
  * @link   http://sridharkatakam.com/
  */
 
-
-add_action( 'genesis_entry_content', 'sk_add_buy_button' );
-function sk_add_buy_button() {
-
-	if ( get_field( 'book_purchase_link' ) ) {
-		echo '<a href="' . get_field( 'book_purchase_link' ) . '" class="button">Click here to buy</a>';
-	}
-
-}
+// Add buy action
+// add_action( 'genesis_entry_content', 'sk_add_buy_button' );
+// function sk_add_buy_button() {
+//
+// 	if ( get_field( 'book_purchase_link' ) ) {
+// 		echo '<a href="' . get_field( 'book_purchase_link' ) . '" class="button">Click here to buy</a>';
+// 	}
+//
+// }
 
 //* Previous and Next Post navigation
 add_action('genesis_after_content_sidebar_wrap', 'sk_custom_post_nav');

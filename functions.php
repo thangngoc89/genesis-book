@@ -21,6 +21,7 @@ function my_enqueue_styles() {
 // * Do NOT include the opening php tag
 //* [Site-wide] Modify the Excerpt read more link
 add_filter('excerpt_more', 'new_excerpt_more');
+
 function new_excerpt_more($more) {
 
 	return '... <a class="more-link" href="' . get_permalink() . '">Read More</a>';
@@ -49,8 +50,10 @@ function sk_display_custom_fields() {
 	$book_author = get_field( 'book_author' );
 	$book_published_year = get_field( 'book_published_year' );
 	$book_purchase_link = get_field( 'book_purchase_link' );
+  $book_download_link = get_field( 'book_download_link' );
+  $book_language = get_field( 'book_language' );
 
-	if ( $book_price || $book_author || $book_published_year || $book_purchase_link ) {
+	if ( $book_price || $book_author || $book_published_year || $book_purchase_link || $book_download_link ) {
 
 		echo '<div class="book-meta">';
 
@@ -66,8 +69,29 @@ function sk_display_custom_fields() {
 				echo '<p><strong>Year Published</strong>: ' . $book_published_year . '</p>';
 			}
 
+      if ( $book_language ) {
+        switch ($book_language) {
+          case 'english':
+              $book_language_print = 'English';
+            break;
+
+          case 'vietnamese':
+              $book_language_print = 'Tiếng Việt';
+            break;
+
+          default:
+              $book_language_print = 'unknown';
+            break;
+        }
+        echo '<p><strong>Language:</strong> ' . $book_language_print . '</p>';
+      }
+
 			if ( $book_purchase_link ) {
-				echo '<a href="' . $book_purchase_link . '" class="button">Buy this book</a>';
+				echo '<p><a href="' . $book_purchase_link . '">Buy this book</a></p>';
+			}
+
+      if ( $book_download_link ) {
+				echo '<a href="' . $book_download_link . '" class="button">Download this book</a>';
 			}
 
 		echo '</div>';
@@ -110,8 +134,8 @@ function sk_template_redirect( $template ) {
 	return $template;
 
 }
-add_action( 'genesis_setup', 'news_secondheader' );
-function news_secondheader() {
+add_action( 'genesis_setup', 'sk_primary_sidebar' );
+function sk_primary_sidebar() {
 	//* [Single Book pages] Custom Primary Sidebar for single Book entries
 	genesis_register_sidebar( array(
 		'id'			=> 'primary-sidebar-book',
