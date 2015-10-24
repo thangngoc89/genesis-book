@@ -4,7 +4,7 @@
 add_filter('manage_books_posts_columns', 'kn_add_post_columns');
 
 function kn_add_post_columns($columns) {
-    $columns['my_field'] = 'My Field';
+    $columns['my_field'] = 'Book Download Link';
     return $columns;
 }
 
@@ -28,9 +28,9 @@ function kn_add_quick_edit($column_name, $post_type) {
     ?>
     <fieldset class="inline-edit-col-left">
         <div class="inline-edit-col">
-            <span class="title">Widget Set</span>
+            <span class="title">Book Download Link</span>
             <input id="book_download_link_noncename" type="hidden" name="book_download_link_noncename" value="" />
-            <input id="book_download_link" type="text" name="book_download_link" value=""/>
+            <input id="book_download_link" type="text" name="book_download_link" value="" style="width: 100%" />
         </div>
     </fieldset>
      <?php
@@ -62,33 +62,6 @@ function kn_save_quick_edit_data($post_id) {
     return $my_fieldvalue;
 }
 
-function my_enqueue($hook) {
-    if ( 'edit.php' != $hook ) {
-        return;
-    }
-
-    wp_enqueue_script( 'my_custom_script', get_stylesheet_directory_uri() . '/js/quick_edit_download_link_script.js' );
-}
-add_action( 'admin_enqueue_scripts', 'my_enqueue' );
-
-// Add to our admin_init function
-add_action('admin_footer', 'kn_quick_edit_javascript');
-
-function kn_quick_edit_javascript() {
-    global $current_screen;
-    if (($current_screen->post_type != '')) return;
-
-    ?>
-<script type="text/javascript">
-function set_book_download_link_value(fieldValue, nonce) {
-        // refresh the quick menu properly
-        inlineEditPost.revert();
-        console.log(fieldValue);
-        jQuery('#book_download_link').val(fieldValue);
-}
-</script>
- <?php
-}
 
 // Add to our admin_init function
 add_filter('post_row_actions', 'kn_expand_quick_edit_link', 10, 2);
@@ -104,4 +77,13 @@ function kn_expand_quick_edit_link($actions, $post) {
     $actions['inline hide-if-no-js'] .= __( 'Quick Edit' );
     $actions['inline hide-if-no-js'] .= '</a>';
     return $actions;
+}
+add_action( 'admin_enqueue_scripts', 'kn_admin_enqueue' );
+
+function kn_admin_enqueue($hook) {
+    if ( 'edit.php' != $hook ) {
+        return;
+    }
+
+    wp_enqueue_script( 'my_custom_script', get_stylesheet_directory_uri() . '/js/quick_edit_download_link_script.js' );
 }
