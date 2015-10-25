@@ -24,7 +24,6 @@ function sk_show_featured_image_single_book_pages() {
 	);
 
 	genesis_image( $image_args );
-
 }
 
 add_action( 'genesis_before_sidebar_widget_area', 'sk_display_custom_fields' );
